@@ -1,15 +1,41 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import App from './App';
+import Login from './Pages/login';
+import Register from './Pages/register';
+import Loggedin from './Pages/loggedin';
+import Dashboard from './Pages/dashboard';
+import Contacts from './Pages/contacts';
+import AddUser from './Pages/adduser';
+import AddReport from './Pages/addreport';
+import Repository from './Pages/repository';
+// import Cart from './Pages/cart';
+import Signout from './Pages/signout'
 import reportWebVitals from './reportWebVitals';
+import store from './store'
+import { Provider } from 'react-redux'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+ReactDOM.render(
+<Provider store={store}>
+  <BrowserRouter>
+        <Routes>
+            <Route path={'/register'} element={<Register />}/>
+            {/* <Route path={'/loggedin/:name/:email'} element={<Loggedin />}/>  */}
+            <Route path={'/loggedin'} element={<Loggedin />}/>
+            <Route path={'/dashboard'} element={<Dashboard />}/>
+            <Route path={'/contacts'} element={<Contacts />}/>
+            <Route path={'/adduser'} element={<AddUser />}/>
+            <Route path={'/addreport'} element={<AddReport />}/>
+            <Route path={'/repository'} element={<Repository />}/>
+            {/* <Route path={'/cart'} element={<Cart />}/> */}
+            <Route path={'/signout'} element={<Signout />}/>
+            <Route path={'/'} element={<Login />}/>
+        </Routes>
+    </BrowserRouter>
+    </Provider>,
+document.getElementById('root'));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

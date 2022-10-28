@@ -1,0 +1,113 @@
+#upperbar{
+    height:70px;
+    background-color:black;
+    }
+    #upperleft{
+    font-size:40px;
+    float: left;
+    color: #f2f2f2;
+    margin-block:0em;
+    }
+    #upperright{
+    position:relative;
+    text-align:right;
+    float: right;
+    color: #f2f2f2;
+    }
+    
+    #upperright button{
+        height: 25px;
+        font-size: 20px;
+        margin:15px;
+    }
+     
+     #leftsidenav{
+    position:absolute;
+    background-color: #f1f1f1;
+    }
+    
+    #dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      right: 0px;
+    }
+    
+    .dropdown-content a {
+      color: black;
+      text-align:right;
+      padding: 12px 16px;
+      display: block;
+    }
+    
+    .dropdown-content a:hover {background-color: #ddd;}
+    
+    #menu{
+    height:30px;
+    width:30px;
+    margin:20px;
+    
+    }
+    
+    #left-dropdown-content{
+    background-color: #f1f1f1;	
+    display:block;
+    margin-top:55px;
+    width:150px;
+    height:200px;
+    }
+    
+    #left-dropdown-content a {
+      color: black;
+      padding: 10px 15px;
+      display:inline-block;
+      width:120px;
+    }
+    
+    #left-dropdown-content a:hover {background-color: #ddd;}
+    
+    /* Report Styling */
+    #rightdisplay {
+    width: 80%;
+      float:right;
+      padding: 10px 10px;
+      margin-top: 20px;;
+    }
+    
+    
+    #Dashboards{
+        display: inline-block;
+         width: 100%;
+    }
+     .report{
+    display: inline-block;
+       border: 3px solid #f1f1f1;
+      padding: 5px 5px;
+      font-size: 15px;
+      width: 20%;
+      margin-right:20px;
+     }
+    
+    .tableFixHead {
+            margin-top: 75px;
+            overflow-y: auto;
+            height: 200px;
+            width:95%
+          }
+    .tableFixHead thead th {
+            position: sticky;
+            top: 0;
+          }
+    .tableFixHead table {
+            border-collapse: collapse;
+            width: 100%;
+            
+          }
+    .tableFixHead th,.tableFixHead td {
+            padding: 8px 16px;
+            border: 1px solid #ccc;
+            text-align: center;
+          }
+    .tableFixHead th {
+            background: #eee;
+          } 

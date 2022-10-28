@@ -1,0 +1,45 @@
+form {
+    border: 3px solid #f1f1f1;
+    margin:0px 150px;
+    }
+
+h2{
+text-align: center;
+}
+
+.imgcontainer{
+text-align: center;
+}
+
+input[type=text], input[type=password] {
+width: 100%;
+text-align: center;
+padding: 12px 20px;
+margin: 8px 0px;
+box-sizing: border-box;
+display: inline-block;
+  border: 1px solid #ccc;
+}
+
+.container {
+ text-align: center;
+ padding: 0px 300px;
+}
+
+img.avatar {
+ border-radius: 50%;
+}
+
+button {
+ background-color: #04AA6D;
+ color: white;
+ padding: 14px 20px;
+ margin: 8px 0;
+ border: none;
+ cursor: pointer;
+ width: 100%;
+}
+
+button:hover {
+ opacity: 0.2;
+}

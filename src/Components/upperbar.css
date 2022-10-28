@@ -1,0 +1,108 @@
+#upperbar{
+    height:70px;
+    background-color:black;
+    }
+    #upperleft{
+    font-size:40px;
+    float: left;
+    color: #f2f2f2;
+    margin-block:0em;
+    }
+    #rightcontent{
+      position:relative;
+      text-align:right;
+      float: right;
+      width: 50%;
+      color: #f2f2f2;
+      margin-right: 10px
+      }
+    #upperright{
+    position:inline-block;
+    text-align:right;
+    float: right;
+    width: 10%;
+    color: #f2f2f2;
+    margin: 5px;
+    }
+    #upperright1{
+      position:rinline-block;
+      text-align:right;
+      float: right;
+      width: 10%;
+      color: #f2f2f2;
+      margin: 5px;
+      }
+    
+    #upperright button{
+        height: 40px;
+        font-size: 20px;
+        margin:15px;
+    }
+
+    /* #cartcontent{
+      display: none; 
+      color:black;
+    } */
+    
+    #dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        right: 0px;
+      }
+      
+      .dropdown-content a {
+        color: black;
+        text-align:right;
+        padding: 12px 16px;
+        display: block;
+      }
+      
+      .dropdown-content a:hover {background-color: #ddd;}
+
+      .popup-box {
+        position: fixed;
+        background: #00000050;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+      }
+       
+      .box {
+        position: relative;
+        width: 70%;
+        margin: 0 auto;
+        height: auto;
+        color: black;
+        max-height: 70vh;
+        margin-top: calc(100vh - 85vh - 20px);
+        background: #fff;
+        border-radius: 4px;
+        padding: 20px;
+        border: 1px solid #999;
+        overflow: auto;
+      }
+       
+      .close-icon {
+        content: 'x';
+        cursor: pointer;
+        position: fixed;
+        right: calc(15% - 30px);
+        top: calc(100vh - 85vh - 33px);
+        background: #ededed;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        line-height: 20px;
+        text-align: center;
+        border: 1px solid #999;
+        font-size: 20px;
+      }
+      td, th{
+        height: 40px;
+        width: 160px;
+        text-align: center;
+        vertical-align: middle;
+      }
+      

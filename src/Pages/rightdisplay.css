@@ -1,0 +1,20 @@
+/* Report Styling */
+#rightdisplay {
+    width: 70%;
+      float:right;
+      display:inline-block;
+      text-align: center;
+      padding: 20px 100px;
+      border: 3px solid #f1f1f1;
+      margin-top: 20px;;
+    }
+    
+    input[type=text], input[type=number], input[type=password] {
+     width: 100%;
+     text-align: center;
+     padding: 12px 20px;
+     margin: 8px 0px;
+     box-sizing: border-box;
+     display: inline-block;
+       border: 1px solid #ccc;
+     }
