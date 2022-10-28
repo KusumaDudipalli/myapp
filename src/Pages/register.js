@@ -11,7 +11,7 @@ function Register(){
     const [emailformat, setEmailformat] = useState(new RegExp(/\S+@\S+\.\S+/));
 
     function Store(){
-        //check existing user
+        //check existing 
         	
             //var existinguser = localStorage.getItem(uname);
             
