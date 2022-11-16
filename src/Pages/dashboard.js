@@ -1,52 +1,34 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom';
+// import { useDispatch } from 'react-redux'
+// import { updateuser } from '../storeSlice/counterSlice'
 import './dashboard.css';
-import Leftsidenav from '../Components/leftsidenav'
-import Upperbar from '../Components/upperbar';
-// import MyTemplate from '../templates/myTemplate'
+// import Leftsidenav from '../Components/leftsidenav'
+// import Upperbar from '../Components/upperbar';
+import MyTemplate from '../templates/myTemplate'
 import './rightdisplay.css'
 import { useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { updateuser } from '../storeSlice/counterSlice'
 
-export default function Dashboard(){
+
+export default function Dashboard(props){
+	const {search} = useLocation();
+	const name = new URLSearchParams(search).get("name");
+    const email = new URLSearchParams(search).get("email");
+    const type = new URLSearchParams(search).get("type");
     var userName = localStorage.getItem("currentUser");
-    const {search} = useLocation();
-    const name = new URLSearchParams(search).get("name");
+	const dispatch = useDispatch();
 
-    console.log(search);
-    console.log(name);
+	if(name){
+		sessionStorage.setItem("currentUser", name);
+    dispatch(updateuser({username:name,email:email, type: type}));
+	
+	}
+    // console.log(search);
 
     var existinguser = JSON.parse(localStorage.getItem(userName));
-    var storedEmail = existinguser.email;
-
-    // // document.getElementsByClassName("unbtn").innerHTML = userName;
-    // document.querySelector(".unbtn").innerHTML = userName;
-    // document.getElementById("uemail").innerHTML = storedEmail;
-
-    // function Showdetails() {
-    // document.getElementById("dropdown-content").style.display = "block";
-    // }
-
-    // function Showleftmenu() {
-    // document.getElementById("left-dropdown-content").style.display = "block";
-    // }
-
-    // // Close the dropdown if the user clicks outside of it
-    // window.onclick = function(event) {
-    // if (!event.target.matches('.unbtn')) {
-    //     document.getElementById("dropdown-content").style.display = "none";    
-    // }
-    // if (!event.target.matches('#leftsidenav')) {
-    //     document.getElementById("left-dropdown-content").style.display = "none";    
-    // }
-    
-    // }
-
-    
-    // function Signout(){
-    // localStorage.removeItem("currentUser");
-    // }
-
-        
+    // var storedEmail = existinguser.email;        
             
     const [existingreports, setexistingreports] = useState(JSON.parse(localStorage.getItem("existingReports")));
     if (existingreports && existingreports.length > 0) {
@@ -58,68 +40,6 @@ export default function Dashboard(){
             var totalreports = existingreports.length
         }
                 
-    
-                
-    // if (totalreports == 1){
-    //     document.getElementById("Reportname1").innerHTML = existingreports[0].reportname;	
-    //     document.getElementById("Reporttype1").innerHTML = existingreports[0].reporttype;
-    //     document.getElementById("Createddate1").innerHTML = existingreports[0].createdtime;			
-    // }
-    // else if(totalreports > 1){
-    //     var firstind = getprioityind();
-        
-    //     document.getElementById("Reportname1").innerHTML = existingreports[firstind].reportname;	
-    //     document.getElementById("Reporttype1").innerHTML = existingreports[firstind].reporttype;
-    //     document.getElementById("Createddate1").innerHTML = existingreports[firstind].createdtime;
-        
-    //     var secondind = getprioityind();
-        
-    //     document.getElementById("Reportname2").innerHTML = existingreports[secondind].reportname;	
-    //     document.getElementById("Reporttype2").innerHTML = existingreports[secondind].reporttype;
-    //     document.getElementById("Createddate2").innerHTML = existingreports[secondind].createdtime;
-        
-    //     var thirdind = getprioityind();
-        
-    //     document.getElementById("Reportname3").innerHTML = existingreports[thirdind].reportname;	
-    //     document.getElementById("Reporttype3").innerHTML = existingreports[thirdind].reporttype;
-    //     document.getElementById("Createddate3").innerHTML = existingreports[thirdind].createdtime;
-        
-    //     var fourthind = getprioityind();
-        
-    //     document.getElementById("Reportname4").innerHTML = existingreports[fourthind].reportname;	
-    //     document.getElementById("Reporttype4").innerHTML = existingreports[fourthind].reporttype;
-    //     document.getElementById("Createddate4").innerHTML = existingreports[fourthind].createdtime;
-    // }
-                
-    // function getprioityind(){
-        
-        
-        
-            
-    //         var max = Math.max(...temparr);
-    //         var greatindex = temparr.indexOf(max.toString());
-            
-    //         temparr[greatindex] = -1;
-            
-    //         return greatindex;
-    // }
-
-    // var table = document.getElementById("reporttable");
-    // existingreports.forEach((element, index) => { 
-
-    // var row = table.insertRow();
-
-    // var cell1 = row.insertCell(0);
-    // var cell2 = row.insertCell(1);
-    // var cell3 = row.insertCell(2);
-    // var cell4 = row.insertCell(3);
-
-    // cell1.innerHTML = element.reportname;
-    // cell2.innerHTML = element.reporttype;
-    // cell3.innerHTML = element.priority;
-    // cell4.innerHTML = element.createdtime;
-    // })
-
     function TopReports(){
 
         return(
@@ -172,8 +92,9 @@ export default function Dashboard(){
 
     return(  
         <div>
-        <Upperbar userName = {localStorage.getItem("currentUser")}  email = {JSON.parse(localStorage.getItem(localStorage.getItem("currentUser"))).email}></Upperbar>
-        <Leftsidenav></Leftsidenav>
+        <MyTemplate></MyTemplate>
+        {/* <Upperbar userName = {localStorage.getItem("currentUser")}  email = {JSON.parse(localStorage.getItem(localStorage.getItem("currentUser"))).email}></Upperbar>
+        <Leftsidenav></Leftsidenav> */}
         <div id="rightdisplay" className = "parent">
 			<div id = "Dashboards">
             <TopReports></TopReports>

@@ -1,0 +1,6 @@
+export const HOST = "http://localhost:8080/"
+export const TOYS_URI = "inventory/toys"
+export const ELECTRONICS_URI = "inventory/electronics"
+export const CART_URI = "cart/"
+export const CART_USER_URI = "cart/item/"
+export const USER_URI = "api/user/"

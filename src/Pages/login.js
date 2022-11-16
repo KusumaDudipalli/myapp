@@ -1,27 +1,51 @@
 import React, { useState} from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import ReactDOM from 'react-dom';
+import { useDispatch } from 'react-redux';
+import { updateuser } from '../storeSlice/counterSlice'
 import './Login.css';
 import Register from './register';
-import Loggedin from './loggedin';
-
+// import Loggedin from './loggedin';
+import Dashboard from '../Pages/dashboard';
+import axios from 'axios';
 
 function Login() {
   const [userName, setUserName] = useState("");
   const [userPw, setPassword] = useState("");
   
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function Check(){
-    if(userName && localStorage.getItem(userName) && userPw == JSON.parse(localStorage.getItem(userName)).psw) {
-      localStorage.setItem("currentUser", userName);
-      navigate(`/loggedin/?name=${userName}&email=${JSON.parse(localStorage.getItem(userName)).email}`);
-      // navigate("/loggedin?userName=" + userName + "&email=" + JSON.parse(localStorage.getItem(userName)).email);
-     
-		}
-    else{
-      alert("User Name or Password is incorrect");
-    }
+    // Send a POST request
+axios({
+  method: 'get',
+  url: `http://localhost:8080/api/user/${userName}`
+}).then((data)=>{
+  console.log(data.data);
+  // if(userName && localStorage.getItem(userName) && userPw == JSON.parse(localStorage.getItem(userName)).psw) {
+  //   localStorage.setItem("currentUser", userName);
+  //   navigate(`/dashboard/?name=${userName}&email=${JSON.parse(localStorage.getItem(userName)).email}&type=${JSON.parse(localStorage.getItem(userName)).type}`);
+  //   // navigate("/loggedin?userName=" + userName + "&email=" + JSON.parse(localStorage.getItem(userName)).email);
+   
+  // }
+  // else{
+  //   alert("User Name or Password is incorrect");
+  // }
+  const user = data.data[0]
+  if(userName && user && user.name && userPw == user.password) {
+    localStorage.setItem("currentUser", userName);
+   
+    dispatch(updateuser({name:user.name,type:user.profile, email:user.email}));
+    navigate(`/dashboard/?name=${userName}&email=${user.email}&type=${user.profile}`);
+    // navigate("/loggedin?userName=" + userName + "&email=" + JSON.parse(localStorage.getItem(userName)).email);
+   
+  }
+  else{
+    alert("User Name or Password is incorrect");
+  }
+});
+    
   }
 
   return (

@@ -1,9 +1,9 @@
 import React, { useState, Component, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useParams } from 'react-router-dom';
-import Upperbar from '../Components/upperbar';
-import Leftsidenav from '../Components/leftsidenav'
-// import MyTemplate from '../templates/myTemplate'
+// import Upperbar from '../Components/upperbar';
+// import Leftsidenav from '../Components/leftsidenav'
+import MyTemplate from '../templates/myTemplate'
 import './loggedin.css';
 import { useLocation } from 'react-router-dom';
 
@@ -35,23 +35,25 @@ function Loggedin(props) {
 
     const name = new URLSearchParams(search).get("name");
     const email = new URLSearchParams(search).get("email");
+    const type = new URLSearchParams(search).get("type");
 
     console.log(search);
     console.log(tempstr);
     console.log(parms);
     console.log(name);
     console.log(email);
+    console.log(type);
     return (
 
-      // <MyTemplate userName = {name}  email = {email}>
+      <MyTemplate userName = {name}  email = {email} type = {type}>
 
-      // </MyTemplate>
+      </MyTemplate>
 
-      <div>
-        <Upperbar userName = {name}  email = {email}></Upperbar>
-        {/* <Upperbar userName = {props.location.userName}  email = {props.location.email}></Upperbar> */}
-        <Leftsidenav></Leftsidenav>
-      </div>
+      // <div>
+      //   <Upperbar userName = {name}  email = {email}></Upperbar>
+      //   {/* <Upperbar userName = {props.location.userName}  email = {props.location.email}></Upperbar> */}
+      //   <Leftsidenav></Leftsidenav>
+      // </div>
     );
   }
   

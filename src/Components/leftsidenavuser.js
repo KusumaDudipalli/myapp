@@ -2,15 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Dashboard from '../Pages/dashboard';
 import Contacts from '../Pages/contacts';
-import AddUser from '../Pages/adduser';
-import AddItem from '../Pages/additem';
-import Repository from '../Pages/toys';
-import Electronics from '../Pages/electronics';
+// import AddUser from '../Pages/adduser';
+// import AddReport from '../Pages/addreport';
+import Toys from '../Pages/toys';
 // import Cart from '../Pages/cart';
 import './leftsidenav.css';
 
 
-export default function Leftsidenav(){
+export default function Leftsidenavuser(){
     
         function Showleftmenu() {
         document.getElementById("left-dropdown-content").style.display = "block";
@@ -21,6 +20,10 @@ export default function Leftsidenav(){
             console.log(event.target.className);
         if ((!event.target.matches('.active')) && (!event.target.matches('.left-dropdown-content')) && (!event.target.matches('#menu')) && (!event.target.matches('#leftsidenav'))) {
             document.getElementById("left-dropdown-content").style.display = "none";   
+        }
+        
+        if (!event.target.matches('.unbtn')) {
+            document.getElementById("dropdown-content").style.display = "none";    
         }
         }
     
@@ -33,10 +36,9 @@ export default function Leftsidenav(){
 		<div id="left-dropdown-content" className="left-dropdown-content">
                     <Link to='/dashboard' className="active">Dashboard</Link>
                     <Link to='/contacts' className="active">Contact us</Link>
-                    <Link to='/adduser' className="active">Add User</Link>
-                    <Link to='/additem' className="active">Add Item</Link>
+                    {/* <Link to='/adduser' className="active">Add User</Link>
+                    <Link to='/addreport' className="active">Add Report</Link> */}
                     <Link to='/toys' className="active">Toys</Link>
-                    <Link to='/electronics' className="active">Electronics</Link>
                     {/* <Link to='/cart' className="active">Cart</Link> */}
 		</div>
 	</div>
