@@ -25,8 +25,8 @@ export default function Upperbar(props){
    var [cartVal, setCartVal] = useState([])
     var [cartCount, setCartCount] = useState(0);
     let counter = store.getState().counter;
-    store.subscribe(()=>{counter = store.getState().counter});
-    
+    store.subscribe(()=>{counter = store.getState().counter}); 
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -46,20 +46,20 @@ export default function Upperbar(props){
                 setCartCount(counter);
                 dispatch(updateCart({cartList:temparr,cartCount:counter}));
         });
-        // axios({
-        //     method: 'get',
-        //     url: HOST + TOYS_URI
-        //   }).then((response)=>{
-        //     // setToys(response.data);
-        //     dispatch(updateToys({toys:response.data}));
-        //   });
-        //   axios({
-        //     method: 'get',
-        //     url: HOST + ELECTRONICS_URI
-        //   }).then((response)=>{
-        //     // setElectronics(response.data);
-        //     dispatch(updateElectronics({electronics:response.data}));
-        //   })
+        axios({
+            method: 'get',
+            url: HOST + TOYS_URI
+          }).then((response)=>{
+            // setToys(response.data);
+            dispatch(updateToys({toys:response.data}));
+          });
+          axios({
+            method: 'get',
+            url: HOST + ELECTRONICS_URI
+          }).then((response)=>{
+            // setElectronics(response.data);
+            dispatch(updateElectronics({electronics:response.data}));
+          })
     }, []);
 
     // cartcounter
@@ -304,6 +304,11 @@ export default function Upperbar(props){
         <div id = "upperbar">
 		<p id = "upperleft">My Statistics</p>
         <div id = "rightcontent">
+        <div id = "upperright1">
+                    <button onClick={togglePopup} className="unbtn">Cart {counter.cartCount}</button>
+                    {isOpen && <CartPopup/>}
+
+            </div>
             <div id = "upperright">
                     <button onClick={showdetails} className="unbtn">{username}</button>
                     <div id="dropdown-content" className="dropdown-content">
@@ -313,11 +318,7 @@ export default function Upperbar(props){
 
                     </div>
             </div>
-            <div id = "upperright1">
-                    <button onClick={togglePopup} className="unbtn">Cart {counter.cartCount}</button>
-                    {isOpen && <CartPopup/>}
-
-            </div>
+           
         </div>
 	</div>
     )

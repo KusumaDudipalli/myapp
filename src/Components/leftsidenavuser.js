@@ -5,6 +5,7 @@ import Contacts from '../Pages/contacts';
 // import AddUser from '../Pages/adduser';
 // import AddReport from '../Pages/addreport';
 import Toys from '../Pages/toys';
+import Electronics from '../Pages/electronics';
 // import Cart from '../Pages/cart';
 import './leftsidenav.css';
 
@@ -39,6 +40,7 @@ export default function Leftsidenavuser(){
                     {/* <Link to='/adduser' className="active">Add User</Link>
                     <Link to='/addreport' className="active">Add Report</Link> */}
                     <Link to='/toys' className="active">Toys</Link>
+                    <Link to='/electronics' className="active">Electronics</Link>
                     {/* <Link to='/cart' className="active">Cart</Link> */}
 		</div>
 	</div>

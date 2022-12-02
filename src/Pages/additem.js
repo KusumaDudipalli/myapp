@@ -11,6 +11,29 @@ export default function AddReport(){
 
     const dispatch = useDispatch();
     const [mainImage, setMainImage] = useState(null);
+    const [dataUri, setDataUri] = useState('')
+
+    const fileToDataUri = (file) => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          resolve(event.target.result)
+        };
+        reader.readAsDataURL(file);
+        })
+    
+        const seturl = (file) => {
+    
+            if(!file) {
+              setDataUri('');
+              return;
+            }
+        
+            fileToDataUri(file)
+              .then(dataUri => {
+                setDataUri(dataUri)
+              })
+            
+          }
 
     function AddItem(){
             var now = new Date();
@@ -19,7 +42,7 @@ export default function AddReport(){
             var itemtype = document.getElementById('itemtype').value;
             var itemprice = document.getElementById('itemprice').value;
             var itemdesc = document.getElementById('itemdesc').value;
-            var itemimg = mainImage;
+            var itemimg = dataUri;
 
             const Item = {itemname: itemname, itemtype: itemtype,itemprice: itemprice, itemdesc:itemdesc, itemimg:itemimg, createdtime: newtime }
 
@@ -50,9 +73,7 @@ export default function AddReport(){
                 <input type="text" placeholder="Enter Item Desc" name="itemdesc" id="itemdesc" required />
 
                 <label for="avatar"><b>Choose picture:</b></label>
-                <input type="file" id="itemimg" name="avatar" accept="image/" onChange={({ target }) => {
-              setMainImage(target.files[0]);
-             }} required />
+                <input type="file" id="itemimg" name="avatar" accept="image/" onChange={(event) => seturl(event.target.files[0] || null)} required />
                 
                 {/* <label for="priority"><b>Priority</b></label>
                 <input type="number" placeholder="Enter Report Priority" name="priority" id="priority" required /> */}

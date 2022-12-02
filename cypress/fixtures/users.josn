@@ -1,0 +1,12 @@
+{
+    "id":1,
+    "name":"user1",
+    "password":"password",
+    "email":"email1@gmail.com",
+    "profile":"Admin"
+},
+{"id":2,"name":"user2","password":"password","email":"email2@gmail.com","profile":"Admin"},
+{"id":3,"name":"user3","password":"pass","email":"email3@gmail.com","profile":"User"},
+{"id":4,"name":"user4","password":"password","email":"user4@gmail.com","profile":"User"},
+{"id":4,"name":"user5","password":"password","email":"user5@gmail.com","profile":"Admin"},
+{"id":4,"name":"user10","password":"pass","email":"user10@gmail.com","profile":"User"}

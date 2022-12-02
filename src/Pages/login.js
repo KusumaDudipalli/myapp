@@ -3,11 +3,14 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { updateuser } from '../storeSlice/counterSlice'
-import './Login.css';
+import styles from './Login.css';
 import Register from './register';
 // import Loggedin from './loggedin';
 import Dashboard from '../Pages/dashboard';
 import axios from 'axios';
+import classNames from "classnames";
+// import styles from "./App.module.css";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 function Login() {
   const [userName, setUserName] = useState("");
@@ -15,6 +18,9 @@ function Login() {
   
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const isMobile = useMediaQuery(768);
+  const isTablet = useMediaQuery(1024);
 
   function Check(){
     // Send a POST request
@@ -34,7 +40,7 @@ axios({
   // }
   const user = data.data[0]
   if(userName && user && user.name && userPw == user.password) {
-    localStorage.setItem("currentUser", userName);
+    sessionStorage.setItem("currentUser", userName);
    
     dispatch(updateuser({name:user.name,type:user.profile, email:user.email}));
     navigate(`/dashboard/?name=${userName}&email=${user.email}&type=${user.profile}`);
@@ -49,7 +55,11 @@ axios({
   }
 
   return (
-    <div>
+    <div className={classNames([
+      styles.layout,
+      isMobile && styles.mobile,
+      isTablet && styles.tablet,
+    ])}>
       <h2>Login Form</h2>
 
         <form>

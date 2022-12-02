@@ -17,6 +17,7 @@ export default function Toys(){
   const username = sessionStorage.getItem("currentUser");
     var [cartCount, setCartCount] = useState(0);
     const [toys, setToys ]= useState([]);
+    const[toysimg, setToysimg]= useState([]);
     // const Toys = useSelector(state => state.counter.Toys);
     var [cartVal, setCartVal] = useState([])
     const dispatch = useDispatch();
@@ -141,6 +142,25 @@ export default function Toys(){
       if (addFlag == "True")
       dispatch(updateCart({ cartList: cartVal,cartCount: counterSlice.cartCount + 1}));
     };
+
+    function Itemimg(props){
+      var binaryData = [];
+      binaryData.push(props.img);
+// window.URL.createObjectURL(new Blob(binaryData, {type: "application/zip"}))
+      const imgURL = URL.createObjectURL(new Blob(binaryData));
+      // const link = document.createElement('a');
+        // link.href = imgURL;
+        // link.setAttribute('download', 'file.jpg'); //or any other extension
+        // document.body.appendChild(link);
+        // link.click();
+    
+        // // clean up "a" element & remove ObjectURL
+        // document.body.removeChild(link);
+        // URL.revokeObjectURL(imgURL);
+      return(
+        <img src = {props.img} alt = "" />
+      )
+    }
     
 
     return(  
@@ -151,6 +171,7 @@ export default function Toys(){
                 <thead>
                     <tr>
                         {/* <th>ID</th> */}
+                        <th></th>
                         <th>Name</th>
                         <th>Price</th>
                         <th>Description</th>
@@ -161,9 +182,11 @@ export default function Toys(){
                 {
                     counterSlice.toys.map((toy) => {
                       return (
-                          <tr key={"employee-id-"+toy.itemname}>
+                        
+                          <tr key={"employee-id-"+toy.itemname} height="300px">
                               {/* <td>{employee.id}</td> */}
-                               {/* <td>{toy.itemimg}</td>  */}
+                              
+                              <td><Itemimg img = {toy.itemimg}></Itemimg></td>
                               {/* <td></td> */}
                               <td>{toy.itemname}</td>
                               <td>{toy.itemprice}</td>
