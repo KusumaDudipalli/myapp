@@ -1,22 +1,48 @@
 import Upperbar from '../../src/Components/upperbar';
-import { HOST, CART_USER_URI, TOYS_URI, USER_URI, ELECTRONICS_URI } from '../../src/Constants/constants';
-import axios from 'axios';
+import ReactDOM from 'react-dom'
+import { Link } from 'react-router-dom';
+import {BrowserRouter, Routes, Route, MemoryRouter} from 'react-router-dom';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+
 
 describe('Upperbar.cy.js', () => {
   beforeEach(() => {
-    const username = sessionStorage.getItem("currentUser");
-    spyOn(axios, get).then
-    axios({
-      method: 'get',
-      url: HOST + USER_URI + "user1" 
-    }).then((response)=>{
-      var email = response.data[0].email;
-      var type = response.data[0].profile;
-      // dispatch(updateuser({username:username,email:email, type: type}));
+    const initialState = { cartCount: 0,
+      addFlag: "False",
+      delFlag: "False",
+      cartList: [],
+      username: "",
+      email: "",
+      type: "",
+      electronics: [],
+      toys: [] };
+    const mockStore = configureStore();
+    let store;
+    let username = "user1"
+    store = mockStore(initialState);
+
+    cy.intercept('GET', 'api/user/' + username, { fixture: 'users.json'}).as('getUsers')
+    cy.intercept('GET', 'api/user/' + username, { fixture: 'users.json'}).as('getUsers')
+    cy.intercept('GET', 'api/user/' + username, { fixture: 'users.json'}).as('getUsers')
+
+   
+
+    cy.mount(
+      <Provider store={store}>
+        <MemoryRouter>
+        <Routes>
+          <Route path={'/'} element={<Upperbar />}/>
+        </Routes>
+        </MemoryRouter>
+      </Provider>);
+
+    cy.wait(['@getUsers'])
     });
   
+    it('mount upperbar', () => {
+      cy.get('.dropdown-content').click()
+    })
   })
-  it('mount upperbar', () => {
-    cy.mount(<Upperbar />)
-  })
-})
+  
